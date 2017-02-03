@@ -1,0 +1,22 @@
+Project idea:
+I plan on looking at fossil records and evolutionary history for the different species listed below, in the order of favoritism.
+
+Challenges: use R to plot diversity of the group through time, plot occurrences of fossil species with python, maybe using R packages paleotree, fossil, and strap (but first, need to research on phylogenetic tree for taxa)
+
+Species preferences:
+1. cat
+2. dog
+3. tiger
+4. panda
+
+Shell commands:
+cat: cut -d ',' -f 6 cat_data.csv | tail -n +16 | sort | uniq | wc -l
+--> 27 unique identifiable names
+dog: cut -d ',' -f 6 dog_data.csv | tail -n +16 | sort | uniq | wc -l
+--> 87 unique identifiable names
+tiger: cut -d ',' -f 6 tiger_data.csv | tail -n +16 | sort | uniq | wc -l
+--> 45 unique identifiable names
+panda: cut -d ',' -f 6 panda_data.csv | tail -n +16 | sort | uniq | wc -l
+--> 1 unique identifiable name
+
+
