@@ -1,0 +1,23 @@
+---
+title: "Canidae fossil_occurrences"
+author: "Sarah Kim"
+date: "March 9, 2017"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+Canis <- read.csv("my-final-formatted-dog.csv", header = F, as.is = T)
+names(Canis) <- c("genus", "species", "minage", "maxage")
+head(Canis)
+
+
+Canis_occ <- ggplot(Canis, aes( species, ymin = maxage, ymax=minage, colour = genus))
+Canis_occ <- Canis_occ + geom_linerange()
+Canis_occ <- Canis_occ + theme(legend.position="none")
+Canis_occ <- Canis_occ + coord_flip()
+Canis_occ <- Canis_occ + labs(title = "Canidae Fossil Occurrences", x = "Species", y = "Ma ago") + theme(plot.title = element_text(hjust = 0.5, size=22, face = "bold"), axis.title =element_text(size=20))
+Canis_occ <- Canis_occ + theme(axis.text.y = element_text(size=3), axis.ticks.y=element_blank())
+Canis_occ 
+```
+
