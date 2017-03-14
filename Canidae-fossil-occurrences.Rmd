@@ -2,22 +2,34 @@
 title: "Canidae fossil_occurrences"
 author: "Sarah Kim"
 date: "March 9, 2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r}
 library(ggplot2)
-Canis <- read.csv("my-final-formatted-dog.csv", header = F, as.is = T)
-names(Canis) <- c("genus", "species", "minage", "maxage")
-head(Canis)
+setwd("/home/eeb177-student/Desktop/eeb-177/eeb177-final-project/")
+canid <- read.csv("/home/eeb177-student/Desktop/eeb-177/eeb177-final-project/canidae-min-max.csv", header = F, as.is = T)
+names(canid) <- c("genus", "species","minage","maxage")
+head(canid)
 
-
-Canis_occ <- ggplot(Canis, aes( species, ymin = maxage, ymax=minage, colour = genus))
-Canis_occ <- Canis_occ + geom_linerange()
-Canis_occ <- Canis_occ + theme(legend.position="none")
-Canis_occ <- Canis_occ + coord_flip()
-Canis_occ <- Canis_occ + labs(title = "Canidae Fossil Occurrences", x = "Species", y = "Ma ago") + theme(plot.title = element_text(hjust = 0.5, size=22, face = "bold"), axis.title =element_text(size=20))
-Canis_occ <- Canis_occ + theme(axis.text.y = element_text(size=3), axis.ticks.y=element_blank())
-Canis_occ 
+canid_occ <- ggplot(canid, aes(species, ymin =maxage, ymax=minage), color = genus)
+canid_occ <- canid_occ + geom_linerange()
+canid_occ <- canid_occ + theme(legend.position = "none")
+canid_occ <- canid_occ + coord_flip()
+canid_occ <- canid_occ +  theme(axis.text.y = element_text(size=4.5))
+canid_occ <- canid_occ + theme(axis.ticks.y=element_blank())
+canid_occ <- canid_occ + scale_y_continuous(limits=c(0,10),expand=c(0,0),breaks=c(0,4,8,12))
+canid_occ <- canid_occ + labs(title="Canid Fossil Occurrences",x="Species",y="Ma ago") + theme(plot.title = element_text(hjust=0.5, size=15, face="bold"), axis.title=element_text(size=20))
+canid_occ
 ```
+```{r}
+ggsave(filename = "canid-occ.pdf", plot = canid_occ)
+ggsave(filename = "canid-occ.png", plot = canid_occ)
+```
+
+
+
+
 
